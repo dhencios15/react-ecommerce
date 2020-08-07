@@ -1,14 +1,11 @@
 import React from 'react';
 
 import Directory from '../../components/Directory';
-import MenuItem from '../../components/MenuItem';
 import './Home.style.scss';
 
-const Home = () => (
+const Home = ({ history }) => (
   <div className='homepage'>
-    <Directory>
-      <MenuItem />
-    </Directory>
+    <Directory />
   </div>
 );
 
