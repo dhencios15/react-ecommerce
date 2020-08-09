@@ -1,27 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
-import * as yup from 'yup';
 
+import schema from '../../helpers/Input-Validation';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import FormInput from '../FormInput';
 import CustomButton from '../CustomButton';
 import './SignUp.style.scss';
 
-const schema = yup.object().shape({
-  displayName: yup.string().required('Display name is required'),
-  email: yup
-    .string()
-    .required('Email is Required')
-    .email('Please input valid email')
-    .trim(),
-  password: yup.string().required('Password is required').min(6).trim(),
-  confirmPassword: yup.string().required('Password is required').min(6).trim(),
-});
-
 const SignUp = () => {
   const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema.SignUpSchema),
     mode: 'onBlur',
   });
 

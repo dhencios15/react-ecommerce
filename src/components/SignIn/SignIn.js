@@ -1,32 +1,28 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
-import * as yup from 'yup';
 
+import schema from '../../helpers/Input-Validation';
 import FormInput from '../../components/FormInput';
 import CustomButton from '../../components/CustomButton';
 import './SignIn.style.scss';
 
-import { signInWithGoogle } from '../../firebase/firebase.utils';
-
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .required('Email is Required')
-    .email('Please input valid email')
-    .trim(),
-  password: yup.string().required('Password is required').min(6).trim(),
-});
+import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 
 const SignIn = () => {
   const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema.SignInSchema),
     mode: 'onBlur',
   });
 
-  const onSubmit = (data, e) => {
-    console.log(data);
-    e.target.reset();
+  const onSubmit = async (data, e) => {
+    const { email, password } = data;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      e.target.reset();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -52,7 +48,7 @@ const SignIn = () => {
         <p style={{ color: 'red' }}>{errors.password?.message}</p>
 
         <div className='buttons'>
-          <CustomButton type='submit'> Sign in </CustomButton>
+          <CustomButton type='submit'>SIGN IN</CustomButton>
           <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
             Sign in with Google
           </CustomButton>
