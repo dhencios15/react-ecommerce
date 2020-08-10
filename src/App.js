@@ -66,5 +66,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-// TODO #8 Redux 1 -> #16 Addting Multiple Items to Cart
