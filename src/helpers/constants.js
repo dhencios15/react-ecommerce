@@ -6,3 +6,6 @@ export const TOGGLE_CART_HIDDEN = 'cart/TOGGLE_CART_HIDDEN';
 export const ADD_ITEM = 'cart/ADD_ITEM';
 export const CLEAR_ITEM_FROM_CART = 'cart/CLEAR_ITEM_FROM_CART';
 export const REMOVE_ITEM = 'cart/REMOVE_ITEM';
+
+// SHOP TYPES
+export const UPDATE_COLLECTIONS = 'shop/SHOP_COLLECTIONS';

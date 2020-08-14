@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import './App.css';
 import { setCurrentUser } from './redux/user/userActions';
 import { selectCurrentUser } from './redux/user/user.selector';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-import './App.css';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
