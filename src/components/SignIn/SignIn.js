@@ -1,18 +1,18 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers";
 
-import schema from '../../helpers/Input-Validation';
-import FormInput from '../../components/FormInput';
-import CustomButton from '../../components/CustomButton';
-import './SignIn.style.scss';
+import "./SignIn.style.scss";
+import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
 
-import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
+import schema from "../../helpers/Input-Validation";
+import FormInput from "../../components/FormInput";
+import CustomButton from "../../components/CustomButton";
 
 const SignIn = () => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema.SignInSchema),
-    mode: 'onBlur',
+    mode: "onBlur",
   });
 
   const onSubmit = async (data, e) => {
@@ -37,7 +37,7 @@ const SignIn = () => {
           register={register}
           label='Email'
         />
-        <p style={{ color: 'red' }}>{errors.email?.message}</p>
+        <p style={{ color: "red" }}>{errors.email?.message}</p>
 
         <FormInput
           name='password'
@@ -45,7 +45,7 @@ const SignIn = () => {
           register={register}
           label='Password'
         />
-        <p style={{ color: 'red' }}>{errors.password?.message}</p>
+        <p style={{ color: "red" }}>{errors.password?.message}</p>
 
         <div className='buttons'>
           <CustomButton type='submit'>SIGN IN</CustomButton>
