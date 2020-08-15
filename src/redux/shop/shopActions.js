@@ -1,8 +1,4 @@
 import {
-  firestore,
-  convertCollectionsSnapshotToMap,
-} from '../../firebase/firebase.utils';
-import {
   FETCH_COLLECTIONS_START,
   FETCH_COLLECTIONS_FAILURE,
   FETCH_COLLECTIONS_SUCCESS,
@@ -21,16 +17,3 @@ export const fetchCollectionsFailure = (errorMessage) => ({
   type: FETCH_COLLECTIONS_FAILURE,
   payload: errorMessage,
 });
-
-export const fetchCollectionsStartAsync = () => (dispatch) => {
-  const collectionRef = firestore.collection('collections');
-  dispatch(fetchCollectionStart());
-
-  collectionRef
-    .get()
-    .then((snapshot) => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      dispatch(fetchCollectionsSuccess(collectionsMap));
-    })
-    .catch((error) => dispatch(fetchCollectionsFailure(error.message)));
-};
