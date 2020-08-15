@@ -1,28 +1,28 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers';
 
-import "./SignIn.style.scss";
-import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
+import './SignIn.style.scss';
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from '../../redux/user/userActions';
 
-import schema from "../../helpers/Input-Validation";
-import FormInput from "../../components/FormInput";
-import CustomButton from "../../components/CustomButton";
+import schema from '../../helpers/Input-Validation';
+import FormInput from '../../components/FormInput';
+import CustomButton from '../../components/CustomButton';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema.SignInSchema),
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const onSubmit = async (data, e) => {
-    const { email, password } = data;
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      e.target.reset();
-    } catch (error) {
-      console.log(error.message);
-    }
+    dispatch(emailSignInStart(data));
+    e.target.reset();
   };
 
   return (
@@ -37,7 +37,7 @@ const SignIn = () => {
           register={register}
           label='Email'
         />
-        <p style={{ color: "red" }}>{errors.email?.message}</p>
+        <p style={{ color: 'red' }}>{errors.email?.message}</p>
 
         <FormInput
           name='password'
@@ -45,11 +45,15 @@ const SignIn = () => {
           register={register}
           label='Password'
         />
-        <p style={{ color: "red" }}>{errors.password?.message}</p>
+        <p style={{ color: 'red' }}>{errors.password?.message}</p>
 
         <div className='buttons'>
           <CustomButton type='submit'>SIGN IN</CustomButton>
-          <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+          <CustomButton
+            type='button'
+            onClick={() => dispatch(googleSignInStart())}
+            isGoogleSignIn
+          >
             Sign in with Google
           </CustomButton>
         </div>

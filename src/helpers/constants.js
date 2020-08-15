@@ -1,11 +1,27 @@
-// USER TYPES
-export const SET_CURRENT_USER = 'user/SET_CURRENT_USER';
+// * USER TYPES
+export const CHECK_USER_SESSION = 'user/CHECK_USER_SESSION';
+export const GOOGLE_SIGN_IN_START = 'user/GOOGLE_SIGN_IN_START';
+export const EMAIL_SIGN_IN_START = 'user/EMAIL_SIGN_IN_START';
+export const SIGN_OUT_START = 'user/SIGN_OUT_START';
 
-// CART TYPES
+export const SIGN_IN_SUCCESS = 'user/SIGN_IN_SUCCESS';
+export const SIGN_OUT_SUCCESS = 'user/SIGN_OUT_SUCCESS';
+export const SIGN_UP_SUCCESS = 'user/SIGN_UP_SUCCESS';
+export const SIGN_UP_START = 'user/SIGN_UP_START';
+
+export const SIGN_IN_FAILURE = 'user/SIGN_IN_FAILURE';
+export const SIGN_OUT_FAILURE = 'user/SIGN_OUT_FAILURE';
+export const SIGN_UP_FAILURE = 'user/SIGN_OUT_FAILURE';
+
+// * CART TYPES
 export const TOGGLE_CART_HIDDEN = 'cart/TOGGLE_CART_HIDDEN';
 export const ADD_ITEM = 'cart/ADD_ITEM';
-export const CLEAR_ITEM_FROM_CART = 'cart/CLEAR_ITEM_FROM_CART';
 export const REMOVE_ITEM = 'cart/REMOVE_ITEM';
+export const CLEAR_CART = 'cart/CLEAR_CART';
+export const CLEAR_ITEM_FROM_CART = 'cart/CLEAR_ITEM_FROM_CART';
 
-// SHOP TYPES
+// * SHOP TYPES
 export const UPDATE_COLLECTIONS = 'shop/SHOP_COLLECTIONS';
+export const FETCH_COLLECTIONS_START = 'shop/FETCH_COLLECTIONS_START';
+export const FETCH_COLLECTIONS_SUCCESS = 'shop/FETCH_COLLECTIONS_SUCCESS';
+export const FETCH_COLLECTIONS_FAILURE = 'shop/FETCH_COLLECTIONS_FAILURE';

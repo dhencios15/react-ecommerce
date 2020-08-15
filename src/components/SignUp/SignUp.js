@@ -1,32 +1,26 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 
+import './SignUp.style.scss';
 import schema from '../../helpers/Input-Validation';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import { signUpStart } from '../../redux/user/userActions';
+
 import FormInput from '../FormInput';
 import CustomButton from '../CustomButton';
-import './SignUp.style.scss';
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema.SignUpSchema),
     mode: 'onBlur',
   });
 
   const onSubmit = async (data, e) => {
-    const { displayName, email, password, confirmPassword } = data;
+    const { email, password, displayName, confirmPassword } = data;
     if (password !== confirmPassword) return console.log('MALI');
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserProfileDocument(user, { displayName });
-    } catch (error) {
-      console.error(error);
-    }
-
+    dispatch(signUpStart({ email, password, displayName }));
     e.target.reset();
   };
 
