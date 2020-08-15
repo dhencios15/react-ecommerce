@@ -18,3 +18,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+// TODO: CONVERT TO REACT - HOOK
