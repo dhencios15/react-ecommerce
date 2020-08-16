@@ -10,5 +10,3 @@ const Home = () => (
 );
 
 export default Home;
-
-// TODO #6 Components -> #4 Header Component
