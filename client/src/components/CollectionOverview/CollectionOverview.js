@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectCollectionsForPreview } from '../../redux/shop/shop.selector';
@@ -19,4 +19,4 @@ const CollectionOverview = () => {
   );
 };
 
-export default CollectionOverview;
+export default memo(CollectionOverview);
